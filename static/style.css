@@ -22,14 +22,15 @@ h1{
 
 .logo{
     background-color: white;
-    height: 200px;
-    width: 200px;
+    height: 190px;
+    width: 190px;
     justify-content: center;
     align-items: center;
     display: flex;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 3px;
 }
 
 h2{
@@ -69,7 +70,7 @@ h2{
     align-items: center;
     padding: 10px 20px;
     font-size: 15px;
-    width: 250px;
+    width: 230px;
     height: 50px;
     text-decoration: none;
     border-radius: 5px;
