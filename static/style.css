@@ -1,0 +1,261 @@
+body {
+    height: 100vh;
+    width: 100%;
+    background-color:rgb(213, 197, 220);
+}
+
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+h1{
+    text-align: center;
+    color:rgb(46, 2, 68);
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    line-height: 10px;
+}
+
+.logo{
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h2{
+    text-align: center;
+    color: black;
+    font-size: 17px;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container{
+    background-color:rgb(249, 245, 252);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    text-align: center;
+    padding: 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 15px;
+    width: 250px;
+    height: 50px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: white;
+    border-width:thin;
+    box-shadow: 2px 2px 2px rgb(81, 79, 79);
+}
+
+.back_button{
+    justify-content: center;
+    padding: 10px;
+    font-size: 12px;
+    width: 70px;
+    text-decoration: none;
+}
+
+.content{
+    margin-left: 300px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.square{
+    background-color: white;
+    width: 1100px;
+    height: 700px;
+    display: flex;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+form {
+    bottom: 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    margin-top: 10px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.spending-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.spending-card {
+    display:flex;
+    flex-direction: column;
+    font-size: 14px;
+    height: 185px;
+    overflow-y: auto;
+    width: 227px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.spending-card h2 {
+    margin: 0;
+    padding: 3px;
+    font-size: 14px;
+}
+
+.spending-card form input[type="text"],
+.spending-card form input[type="number"] {
+    margin-bottom: 3px;
+    margin-top: 2px;
+    padding: 5px;
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.spending-card ul {
+    list-style: none;
+    padding: 5px;
+    font-size: 12px;
+    overflow-y: auto;
+    height: 60px;
+    max-height: 200px;
+}
+
+.spending-card ul li {
+    margin: 2px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-year{
+    padding: 5px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.total-year h3{
+    margin-right: 20px;
+}
+
+.delete-button{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 2px 2px; 
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-button{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 2px 2px; 
+    margin-top: 3px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.spending-card h3{
+    font-size: 15px;
+}
+
+.budget-cards{
+    display: block;
+}
+
+.container2{
+    flex-direction: column;
+    padding: 30px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 16px;
+    text-align: left;
+    table-layout: fixed;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#reset{
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-width: thin;
+    margin-top: 0;
+}
+
+#budget-form{
+    font-size: 18px;
+}
+
+.container2 h3{
+    margin-bottom: 20px;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyBuy</title>
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:5000/static/style.css">
+</head>
+
+<body>
+    <div class = "container">
+        <h1>WELCOME</h1>
+        <div class = "logo">
+
+        </div>
+        <h2>My Buying Plans</h2>
+        <div class = "box">
+                <a href = "{{url_for('spending')}}">
+                    <button class = "btn">My Spending</button>
+                </a>
+                <a href = "{{url_for('budget')}}">
+                    <button class = "btn">My Budget</button>  
+                </a>
+                <a href = "{{url_for('items')}}">
+                    <button class = "btn">My Items</button>
+                </a>
+                <a href = "{{url_for('summary')}}">
+                    <button class = "btn">Summary</button>  
+                </a>
+                <a href = "{{url_for('notes')}}">
+                    <button class = "btn">Notes</button>  
+                </a>             
+        </div>
+    </div>
+    <div class="content">
+        {% if page == 'spending' %}
+            <h1>My Spending</h1>
+            <div class = "square">
+                <div class = "spending-grid">
+                    {% for month in MONTHS %}
+                        <div class = "spending-card">
+                            <h2>{{ month }}</h2>
+                            <form method = "POST">
+                                <input type = "number" name = "amount" step = "0.01" placeholder = "Enter amount" required>
+                                <input type = "text" name = "description" maxlength = "50" placeholder = "Enter description" required>
+                                <input type = "hidden" name = "month" value = "{{ month }}">
+                                <button type = "submit" class = "add-button">Add</button>
+                            </form>
+                            <ul>
+                                {% set index = 0 %}
+                                {% for entry in spending_data[month] %}
+                                    <li>
+                                        ${{ '{:.2f}'.format(entry.amount) }} - {{ entry.description }}
+                                        <form method = "POST" style = "display: inline;">
+                                            <input type = "hidden" name = "month" value = "{{ month }}">
+                                            <input type = "hidden" name = "delete_index" value = "{{ index }}">
+                                            <button type = "submit" class = "delete-button">Delete</button>
+                                        </form>
+                                    </li>
+                                    {% set index = index + 1 %}
+                                {% endfor %}
+                            </ul>
+                            <h3>Total: ${{ '{:.2f}'.format(totals[month]) }}</h3>
+                        </div>
+                    {% endfor %}
+                </div>
+                            
+            </div>
+            <div class="total-year">
+                <h3>Total for the Year: ${{ '{:.2f}'.format(total_all_months) }}</h3>
+                <form method = "POST">
+                    <button type = "submit" name = "reset-spend" id = "reset" value = "true">Reset All</button>
+                </form>
+            </div>
+        {% elif page == 'budget' %}
+            <h1>My Budget</h1>
+            <div class = "square">
+                <div class = "container2">
+                    <form method = "POST" id = "budget-form">
+                        <label for = "month">Month:</label>
+                        <select name = "month" id = "month">
+                            {% for month in months %}
+                            <option value = "{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for = "budget_amount">Budget Amount:</label>
+                        <input type = "number" name = "budget_amount" id = "budget_amount" step = "0.01" required>
+                        <button type = "submit">Set Budget</button>
+                    </form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Budget</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for month, amount in budget_data.items() %}
+                            <tr>
+                                <td>{{ month }}</td>
+                                <td>${{ amount }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <h3>Total Budget: ${{ total_budget }}</h3> 
+                    <form method="POST">
+                        <button type = "submit" name = "reset-budget" id = "reset" value = "true">Reset All Budgets</button>
+                    </form>
+                </div>
+            </div>
+        {% elif page == 'items' %}
+            <h1>Items Needed</h1>
+            <div class = "square">
+                <ul>
+                    {% for item_index in range(checklist_items | length) %}
+                    <li>
+                        <form method = "POST" style = "display: inline;">
+                            <input type = "hidden" name = "toggle" value = "{{ item_index }}">
+                            <input type = "checkbox" 
+                                {% if checklist_items[item_index].done %}checked{% endif %}
+                                onchange="this.form.submit()">
+                        </form>
+                        <span style = "{% if checklist_items[item_index].done %}text-decoration: line-through;{% endif %}">
+                            {{ checklist_items[item_index].task }}
+                        </span>
+                        <form method = "POST" style = "display: inline;">
+                            <input type = "hidden" name = "delete_index" value = "{{ item_index }}">
+                            <button type = "submit" class = "delete-btn">Delete</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <form method="POST">
+                    <input type = "text" name = "new_item" placeholder = "Add a new item" maxlength = "100" required>
+                    <button type = "submit" class = "add-btn">Add</button>
+                </form>
+            </div>
+        {% elif page == 'summary' %}
+            <h1>Summary</h1>
+            <div class = "square">
+
+            </div>
+        {% elif page == 'notes' %}
+            <h1>Notes</h1>
+            <div class = "square">
+                {% if user_input %}
+                    <p><strong>You typed: </strong>{{ user_input }}</p>
+                {% endif %}
+                <form method="POST">
+                    <input type = "text" name = "user_input" placeholder = "Type something and press Enter" autofocus>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
